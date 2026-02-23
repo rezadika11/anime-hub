@@ -2,6 +2,7 @@
 
 A modern anime discovery website built with Vue 3, TypeScript, and Tailwind CSS v4. Powered by the [Jikan API](https://jikan.moe/) (Unofficial MyAnimeList API).
 
+[![Live Demo](https://img.shields.io/badge/Demo-animelist--hub.netlify.app-10B981?style=flat&logo=netlify)](https://animelist-hub.netlify.app/)
 ![Vue](https://img.shields.io/badge/Vue-3.5-4FC08D?style=flat&logo=vue.js&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?style=flat&logo=typescript&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0-06B6D4?style=flat&logo=tailwind-css&logoColor=white)

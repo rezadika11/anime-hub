@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import type { Anime } from '../types/anime'
 
 defineProps<{
@@ -23,13 +24,19 @@ const getYear = (anime: Anime): string => {
     @click="emit('click', anime)"
     class="group relative bg-zinc-900 rounded-lg sm:rounded-xl overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20 border border-zinc-800 hover:border-purple-500/50"
   >
-    <div class="aspect-3/4 overflow-hidden">
+    <div class="aspect-3/4 overflow-hidden bg-zinc-800">
       <img
         :src="anime.images.jpg.large_image_url"
         :alt="anime.title"
-        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
+        :class="{ 'opacity-0': true }"
         loading="lazy"
+        @load="(e) => (e.target as HTMLImageElement).classList.remove('opacity-0')"
       />
+      <!-- Skeleton -->
+      <div class="absolute inset-0 bg-zinc-800 animate-pulse skeleton-shimmer">
+        <div class="absolute inset-0 bg-linear-to-r from-transparent via-zinc-700/50 to-transparent"></div>
+      </div>
     </div>
     <div class="absolute inset-0 bg-linear-to-t from-black via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
     <div class="absolute bottom-0 left-0 right-0 p-3 sm:p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
@@ -50,3 +57,40 @@ const getYear = (anime: Anime): string => {
     </div>
   </div>
 </template>
+
+<style scoped>
+.skeleton-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Hide skeleton when image is loaded */
+img:not(.opacity-0) ~ .skeleton-shimmer {
+  display: none;
+}
+</style>
