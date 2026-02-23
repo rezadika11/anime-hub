@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted } from 'vue'
 import type { Anime } from './types/anime'
 import { getTopAnime, getSeasonalAnime, getUpcomingAnime, searchAnime } from './services/jikanApi'
 import Header from './components/Header.vue'

@@ -13,7 +13,6 @@ const emit = defineEmits<{
 
 const pageNumbers = computed(() => {
   const pages = []
-  const showPages = 5
   const totalPages = props.totalPages
   const currentPage = props.currentPage
 
