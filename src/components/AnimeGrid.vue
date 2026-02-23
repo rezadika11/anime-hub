@@ -13,7 +13,7 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <div v-if="loading" class="grid grid-cols-6 gap-2 sm:gap-3 md:gap-4">
+  <div v-if="loading" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 sm:gap-3 md:gap-4">
     <div v-for="i in 12" :key="i" class="aspect-3/4 bg-zinc-800 rounded-lg sm:rounded-xl animate-pulse"></div>
   </div>
   <div v-else-if="animeList.length === 0" class="text-center py-16 sm:py-20">
@@ -22,7 +22,7 @@ const emit = defineEmits<{
     </svg>
     <p class="text-zinc-400 text-base sm:text-lg">No anime found</p>
   </div>
-  <div v-else class="grid grid-cols-6 gap-2 sm:gap-3 md:gap-4">
+  <div v-else class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 sm:gap-3 md:gap-4">
     <AnimeCard
       v-for="anime in animeList"
       :key="anime.mal_id"

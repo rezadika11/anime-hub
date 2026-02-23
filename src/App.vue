@@ -21,18 +21,19 @@ const fetchAnime = async (page: number = 1) => {
   loading.value = true
   try {
     let data
+    const limit = 24
     switch (currentTab.value) {
       case 'top':
-        data = await getTopAnime(page)
+        data = await getTopAnime(page, limit)
         break
       case 'seasonal':
-        data = await getSeasonalAnime(undefined, undefined, page)
+        data = await getSeasonalAnime(undefined, undefined, page, limit)
         break
       case 'upcoming':
-        data = await getUpcomingAnime(page)
+        data = await getUpcomingAnime(page, limit)
         break
       default:
-        data = await getTopAnime(page)
+        data = await getTopAnime(page, limit)
     }
     animeList.value = data.data
     totalPages.value = data.pagination.last_visible_page
@@ -54,7 +55,7 @@ const handleSearch = async (query: string) => {
   }
   loading.value = true
   try {
-    const data = await searchAnime(query, 1)
+    const data = await searchAnime(query, 1, 24)
     animeList.value = data.data
     totalPages.value = data.pagination.last_visible_page
     hasNextPage.value = data.pagination.has_next_page
@@ -70,7 +71,7 @@ const handleSearchPageChange = async (page: number) => {
   if (!searchQuery.value.trim()) return
   loading.value = true
   try {
-    const data = await searchAnime(searchQuery.value, page)
+    const data = await searchAnime(searchQuery.value, page, 24)
     animeList.value = data.data
     totalPages.value = data.pagination.last_visible_page
     hasNextPage.value = data.pagination.has_next_page
