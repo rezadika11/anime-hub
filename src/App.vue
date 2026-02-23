@@ -39,6 +39,10 @@ const fetchAnime = async (page: number = 1) => {
     totalPages.value = data.pagination.last_visible_page
     hasNextPage.value = data.pagination.has_next_page
     currentPage.value = page
+    // Scroll to top after fetching new page
+    if (page > 1) {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
   } catch (error) {
     console.error('Error fetching anime:', error)
   } finally {
